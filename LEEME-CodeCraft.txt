@@ -1,0 +1,38 @@
+CODECRAFT — CÓDIGO COMPLETO DE LA WEB
+======================================
+
+Este ZIP contiene el código editable de la versión actual de CodeCraft.
+La web es multipágina y está hecha con React/Next (archivos .tsx) y CSS,
+por eso no se reduce a un único archivo HTML.
+
+PÁGINAS INCLUIDAS
+-----------------
+- Inicio: app/page.tsx
+- Servicios: app/servicios/page.tsx
+- Cómo trabajamos: app/como-trabajamos/page.tsx
+- Sobre nosotros: app/sobre-nosotros/page.tsx
+- Precios: app/precios/page.tsx
+
+ARCHIVOS IMPORTANTES PARA EDITAR
+--------------------------------
+- Nombre, logotipo, cabecera y pie: app/components.tsx
+- Título de la pestaña y datos generales: app/layout.tsx
+- Colores, tipografías y diseño: app/globals.css
+- Imágenes e iconos: public/
+
+ABRIR LA WEB EN EL ORDENADOR
+----------------------------
+1. Descomprime este ZIP.
+2. Abre una terminal dentro de la carpeta.
+3. Ejecuta: npm install
+4. Ejecuta: npm run dev
+5. Abre en el navegador la dirección que aparezca en la terminal.
+
+CREAR LA VERSIÓN FINAL
+----------------------
+Ejecuta: npm run build
+
+SIGUIENTE CAMBIO PREVISTO
+-------------------------
+Cambiar el nombre de CodeCraft y sustituir el logotipo en toda la web.
+Conviene conservar este ZIP como copia de seguridad antes de hacer esos cambios.
