@@ -1,4 +1,5 @@
 import { Arrow, ContactBand, PageShell } from "./components";
+import { HeroShowcase } from "./hero-showcase";
 
 const routes = [
   { n: "01", title: "Servicios", text: "Webs, catálogos, tiendas online y presencia digital.", href: "/servicios", tone: "lime" },
@@ -10,31 +11,7 @@ const routes = [
 export default function Home() {
   return (
     <PageShell>
-      <section className="home-hero">
-        <div className="hero-noise" aria-hidden="true" />
-        <div className="home-copy">
-          <p className="eyebrow"><span /> CodeCraft es un estudio digital</p>
-          <h1>Publicamos tus ideas en <em>internet.</em></h1>
-          <p className="hero-lead">
-            Creamos páginas web, catálogos y tiendas online. También trabajamos
-            la presencia digital para que tu proyecto se entienda, se vea y avance.
-          </p>
-          <div className="hero-actions">
-            <a className="button button-primary" href="/servicios">Ver servicios <Arrow /></a>
-            <a className="button button-line" href="/precios">Consultar precios</a>
-          </div>
-        </div>
-        <div className="future-console" aria-label="De una idea a una presencia digital publicada">
-          <div className="console-head"><span>CODECRAFT / STUDIO</span><span>ONLINE ●</span></div>
-          <div className="console-center">
-            <div className="signal-ring"><i /><i /><i /></div>
-            <p>IDEA</p><b>→</b><p>DISEÑO</p><b>→</b><p>ONLINE</p>
-          </div>
-          <div className="console-footer">
-            <span>WEB</span><span>CATÁLOGO</span><span>TIENDA</span><span>PRESENCIA</span>
-          </div>
-        </div>
-      </section>
+      <HeroShowcase />
 
       <section className="route-section">
         <div className="section-intro">
