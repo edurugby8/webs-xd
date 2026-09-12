@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { ContactBand, PageHero, PageShell } from "../components";
+import { Arrow, ContactBand, PageHero, PageShell } from "../components";
+import { ProjectsScene } from "../projects-scene";
 
 export const metadata: Metadata = { title: "Cómo trabajamos | CodeCraft", description: "Proceso, equipo y proyectos realizados por CodeCraft." };
 
@@ -24,13 +25,34 @@ export default function ComoTrabajamos() {
         </div>
       </section>
       <section className="projects-block">
-        <div className="projects-title"><p className="section-label">Proyectos realizados</p><h2>Trabajo real,<br />explicado <em>claro.</em></h2></div>
-        <article className="project-case">
-          <div className="case-code">CASO / 001</div>
-          <div className="case-mark">FA</div>
-          <div className="case-copy"><h3>Floristería Abramar</h3><p>Diseño de una presencia web para presentar el negocio, sus servicios y facilitar el contacto con clientes.</p><div><span>Diseño web</span><span>Negocio local</span><span>Contacto</span></div></div>
+        <div className="projects-title">
+          <p className="section-label">Proyectos realizados</p>
+          <h2>Trabajo real,<br />explicado <em>claro.</em></h2>
+        </div>
+        <ProjectsScene />
+      </section>
+
+      <section className="pcases" aria-label="Caso de estudio">
+        <article className="pcase">
+          <div className="pcase-shot">
+            <img src="/nortepack-site.png" alt="Portada de la tienda online NORTEPACK" loading="lazy" />
+          </div>
+          <div className="pcase-body">
+            <div className="pcase-head"><span>CASO / 001</span><b>TIENDA ONLINE</b></div>
+            <h3>NORTEPACK</h3>
+            <p>Una marca de mochilas que necesitaba vender por su cuenta, sin depender de un marketplace. Montamos la tienda completa y la dejamos publicada y funcionando con dominio propio.</p>
+            <ul className="pcase-list">
+              <li>Catálogo y fichas de producto</li>
+              <li>Carrito y proceso de pedido</li>
+              <li>Identidad visual y tono de marca</li>
+              <li>Publicación con dominio propio</li>
+            </ul>
+            <div className="pcase-tags"><span>Tienda online</span><span>Catálogo</span><span>Identidad</span><span>Ourense</span></div>
+            <a className="pcase-link" href="https://www.nortepack.es" target="_blank" rel="noreferrer">Ver nortepack.es <Arrow /></a>
+          </div>
         </article>
       </section>
+
       <ContactBand />
     </PageShell>
   );
