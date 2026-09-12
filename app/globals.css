@@ -263,28 +263,28 @@ em { font-family: Georgia, serif; font-weight: 400; }
    ========================================================================== */
 
 .pscene { --ps-hot: #ff6a2c; --ps-frame-w: min(540px, 34vw); position: relative; width: 100%; }
-.pscene-sticky { position: relative; overflow: clip; border: 1px solid var(--line); border-radius: 28px; background: #05060b; }
+.pscene-sticky { position: relative; overflow: clip; border: 1px solid var(--line); border-radius: 28px; background: #06040a; }
 .pscene-bg { position: absolute; inset: 0; pointer-events: none; }
 .ps-glow { position: absolute; left: 50%; top: 52%; width: 118%; aspect-ratio: 1; translate: -50% -50%; border-radius: 50%; }
-.ps-glow-cold { background: radial-gradient(circle, rgba(115,232,255,.16), rgba(115,232,255,.05) 38%, transparent 62%); opacity: 0; }
-.ps-glow-warm { background: radial-gradient(circle, rgba(255,106,44,.42), rgba(255,121,95,.16) 38%, transparent 66%); }
-.ps-floor { position: absolute; left: -25%; right: -25%; bottom: -18%; height: 62%; background-image: linear-gradient(rgba(255,255,255,.13) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.13) 1px, transparent 1px); background-size: 62px 62px; transform: perspective(620px) rotateX(74deg); transform-origin: 50% 100%; mask-image: radial-gradient(ellipse 60% 75% at 50% 100%, #000 8%, transparent 72%); opacity: .5; }
-.ps-vignette { position: absolute; inset: 0; box-shadow: inset 0 0 0 1px rgba(255,255,255,.05), inset 0 -140px 150px rgba(0,0,0,.45), inset 0 110px 130px rgba(0,0,0,.3); }
+.ps-glow-cold { background: radial-gradient(circle, rgba(255,205,150,.3) 0%, rgba(255,150,90,.16) 26%, transparent 62%); opacity: 0; }
+.ps-glow-warm { background: radial-gradient(circle, rgba(255,214,170,.5) 0%, rgba(255,138,58,.62) 12%, rgba(255,90,28,.34) 30%, rgba(196,52,10,.14) 52%, transparent 72%); }
+.ps-floor { position: absolute; left: -25%; right: -25%; bottom: -18%; height: 62%; background-image: linear-gradient(rgba(255,138,58,.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255,138,58,.3) 1px, transparent 1px); background-size: 62px 62px; transform: perspective(620px) rotateX(74deg); transform-origin: 50% 100%; mask-image: radial-gradient(ellipse 60% 75% at 50% 100%, #000 8%, transparent 72%); opacity: .5; }
+.ps-vignette { position: absolute; inset: 0; background: radial-gradient(ellipse 72% 68% at 50% 48%, transparent 42%, rgba(10,2,0,.5) 78%, rgba(6,1,0,.82) 100%); box-shadow: inset 0 0 0 1px rgba(255,138,58,.08), inset 0 -150px 160px rgba(8,2,0,.6), inset 0 120px 140px rgba(8,2,0,.45); }
 
 /* --- Escenario 3D --- */
 .pscene-stage { position: relative; display: grid; place-items: center; perspective: 1500px; perspective-origin: 50% 46%; }
 .ps-glyph, .ps-chips, .ps-layers, .ps-tag { display: none; }
 
-.ps-frame { position: relative; width: var(--ps-frame-w); aspect-ratio: 16 / 10.4; border: 1px solid rgba(255,255,255,.14); border-radius: 14px; overflow: clip; background: #0a0c14; box-shadow: 0 50px 90px -40px rgba(0,0,0,.9), 0 0 0 1px rgba(255,121,95,.14), 0 0 90px -30px rgba(255,106,44,.5); }
-.ps-bar { height: 34px; display: flex; align-items: center; gap: 7px; padding: 0 14px; border-bottom: 1px solid rgba(255,255,255,.09); background: #10131f; }
+.ps-frame { position: relative; width: var(--ps-frame-w); aspect-ratio: 16 / 10.4; border: 1px solid rgba(255,150,80,.3); border-radius: 14px; overflow: clip; background: #0a0710; box-shadow: 0 50px 90px -38px rgba(0,0,0,.95), 0 0 0 1px rgba(255,138,58,.22), 0 0 70px -18px rgba(255,96,28,calc(.35 + .5 * var(--final, 0))), 0 0 180px -40px rgba(255,80,20,calc(.3 + .55 * var(--final, 0))); }
+.ps-bar { height: 34px; display: flex; align-items: center; gap: 7px; padding: 0 14px; border-bottom: 1px solid rgba(255,138,58,.16); background: #150e14; }
 .ps-bar i { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,.22); }
 .ps-bar span { margin-left: 14px; color: #8a92a4; font: 550 9px/1 var(--font-geist-mono), monospace; letter-spacing: .06em; }
-.ps-screen { position: relative; height: calc(100% - 34px); background: #0d0f18; }
+.ps-screen { position: relative; height: calc(100% - 34px); background: #0d0812; }
 .ps-wire, .ps-design { position: absolute; inset: 0; padding: 7%; }
 .ps-real { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; }
 
 .ps-wire { display: flex; flex-direction: column; gap: 3.5%; opacity: 0; }
-.ps-wire i { display: block; border: 1px dashed rgba(199,255,56,.55); border-radius: 5px; background: rgba(199,255,56,.07); }
+.ps-wire i { display: block; border: 1px dashed rgba(255,160,80,.7); border-radius: 5px; background: rgba(255,120,40,.1); }
 .ps-wire .w-nav { height: 11%; }
 .ps-wire .w-hero { height: 34%; }
 .ps-wire .w-line { height: 6%; }
@@ -336,20 +336,21 @@ em { font-family: Georgia, serif; font-weight: 400; }
 .pscene.is-live .pscene-sticky { position: sticky; top: 0; height: 100svh; min-height: 620px; display: grid; grid-template-columns: minmax(300px, .92fr) 1.08fr; align-items: center; gap: clamp(24px, 3vw, 56px); padding: 0 clamp(24px, 4vw, 70px); }
 .pscene.is-live .pscene-copy { grid-area: 1 / 1; }
 .pscene.is-live .pscene-stage { grid-area: 1 / 2; }
-.pscene.is-live .ps-glow-cold { opacity: calc(1 - var(--p, 0)); }
-.pscene.is-live .ps-glow-warm { opacity: calc(.28 + .72 * var(--p, 0)); }
-.pscene.is-live .ps-floor { opacity: calc(.18 + .5 * var(--p, 0)); }
+.pscene.is-live .ps-glow-cold { opacity: calc((1 - var(--p, 0)) * .55); }
+.pscene.is-live .ps-glow { left: 63%; top: 50%; }
+.pscene.is-live .ps-glow-warm { opacity: calc(.55 + .45 * var(--p, 0)); scale: calc(.72 + .5 * var(--p, 0)); }
+.pscene.is-live .ps-floor { opacity: calc(.22 + .68 * var(--p, 0)); }
 .pscene.is-live .pscene-stage { position: relative; height: 100%; transform-style: preserve-3d; }
 .pscene.is-live .ps-glyph, .pscene.is-live .ps-chips, .pscene.is-live .ps-layers, .pscene.is-live .ps-tag { display: block; }
 
 /* Fase 01 — el símbolo con volumen */
 .pscene.is-live .ps-glyph { position: absolute; inset: 0; transform-style: preserve-3d; opacity: var(--glyph, 1); transform: translate3d(calc(var(--mx, 0) * 20px), calc(var(--my, 0) * 14px), 0) rotateX(calc(var(--my, 0) * -7deg)) rotateY(calc(-14deg + var(--mx, 0) * 12deg)) scale(calc(1 + (1 - var(--glyph, 1)) * .55)); }
-.pscene.is-live .ps-glyph i { position: absolute; inset: 0; display: grid; place-items: center; font: 700 clamp(76px, 10vw, 150px)/1 var(--font-geist-mono), monospace; font-style: normal; letter-spacing: -.04em; color: rgba(255,121,95,calc(.16 + .06 * (6 - var(--i)))); transform: translateZ(calc(var(--i) * (-7px - (1 - var(--glyph, 1)) * 42px))); }
-.pscene.is-live .ps-glyph i:first-child { color: #fff; text-shadow: 0 0 42px rgba(255,106,44,.65); }
+.pscene.is-live .ps-glyph i { position: absolute; inset: 0; display: grid; place-items: center; font: 700 clamp(76px, 10vw, 150px)/1 var(--font-geist-mono), monospace; font-style: normal; letter-spacing: -.04em; color: rgba(255,96,30,calc(.2 + .09 * (6 - var(--i)))); transform: translateZ(calc(var(--i) * (-7px - (1 - var(--glyph, 1)) * 42px))); }
+.pscene.is-live .ps-glyph i:first-child { color: #fff6ec; text-shadow: 0 0 14px rgba(255,190,130,.95), 0 0 45px rgba(255,110,40,.85), 0 0 110px rgba(255,80,20,.6), 0 0 190px rgba(220,50,5,.35); }
 
 /* Fase 02 — fragmentos de código que entran desde el fondo */
 .pscene.is-live .ps-chips { position: absolute; inset: 0; transform-style: preserve-3d; pointer-events: none; }
-.pscene.is-live .ps-chips span { position: absolute; padding: 6px 10px; border: 1px solid rgba(199,255,56,.3); border-radius: 8px; background: rgba(7,9,18,.72); color: var(--lime); font: 600 10px/1 var(--font-geist-mono), monospace; opacity: calc(var(--build, 0) * (1 - var(--design, 0))); transform: translate3d(0, 0, calc(-460px + var(--build, 0) * 460px)); }
+.pscene.is-live .ps-chips span { position: absolute; padding: 6px 10px; border: 1px solid rgba(255,150,70,.45); border-radius: 8px; background: rgba(14,5,2,.8); color: #ffb27a; box-shadow: 0 0 24px -6px rgba(255,110,40,.5); font: 600 10px/1 var(--font-geist-mono), monospace; opacity: calc(var(--build, 0) * (1 - var(--design, 0))); transform: translate3d(0, 0, calc(-460px + var(--build, 0) * 460px)); }
 .pscene.is-live .ps-chips span:nth-child(1) { left: 1%; top: 38%; }
 .pscene.is-live .ps-chips span:nth-child(2) { right: 2%; top: 30%; }
 .pscene.is-live .ps-chips span:nth-child(3) { left: 5%; bottom: 30%; }
@@ -358,9 +359,9 @@ em { font-family: Georgia, serif; font-weight: 400; }
 
 /* Fase 03 — capas de diseño que se ensamblan */
 .pscene.is-live .ps-layers { position: absolute; inset: 0; display: grid; place-items: center; transform-style: preserve-3d; pointer-events: none; }
-.pscene.is-live .ps-layer { position: absolute; width: var(--ps-frame-w); aspect-ratio: 16 / 10.4; border: 1px solid rgba(255,255,255,.22); border-radius: 14px; background: linear-gradient(150deg, rgba(255,121,95,.14), rgba(255,255,255,.03)); opacity: calc(var(--design, 0) * (1 - var(--final, 0)) * .9); transform: translate3d(calc(var(--mx, 0) * 16px), calc(var(--my, 0) * 11px + (var(--i) - 1) * -18px * (1 - var(--final, 0))), calc((1 - var(--design, 0)) * 190px + (3 - var(--i)) * 58px * (1 - var(--final, 0)))) rotateX(calc(16deg - 16deg * var(--final, 0))) rotateY(calc(-28deg + 28deg * var(--final, 0))) rotateZ(calc(-4deg + 4deg * var(--final, 0))) scale(calc(.78 + .22 * var(--final, 0))); }
-.pscene.is-live .ps-layer b { position: absolute; left: 12px; top: 10px; color: rgba(255,255,255,.75); font: 600 8px/1 var(--font-geist-mono), monospace; letter-spacing: .14em; text-transform: uppercase; opacity: calc(1 - var(--i) * .28); }
-.pscene.is-live .ps-layer i { position: absolute; inset: 26px 12px 12px; border-radius: 8px; background: repeating-linear-gradient(135deg, rgba(255,255,255,.05) 0 9px, transparent 9px 18px); }
+.pscene.is-live .ps-layer { position: absolute; width: var(--ps-frame-w); aspect-ratio: 16 / 10.4; border: 1px solid rgba(255,150,80,.32); border-radius: 14px; background: linear-gradient(150deg, rgba(255,110,40,.2), rgba(255,190,140,.04)); box-shadow: 0 0 50px -20px rgba(255,96,28,.55); opacity: calc(var(--design, 0) * (1 - var(--final, 0)) * .9); transform: translate3d(calc(var(--mx, 0) * 16px), calc(var(--my, 0) * 11px + (var(--i) - 1) * -18px * (1 - var(--final, 0))), calc((1 - var(--design, 0)) * 190px + (3 - var(--i)) * 58px * (1 - var(--final, 0)))) rotateX(calc(16deg - 16deg * var(--final, 0))) rotateY(calc(-28deg + 28deg * var(--final, 0))) rotateZ(calc(-4deg + 4deg * var(--final, 0))) scale(calc(.78 + .22 * var(--final, 0))); }
+.pscene.is-live .ps-layer b { position: absolute; left: 12px; top: 10px; color: rgba(255,190,145,.9); font: 600 8px/1 var(--font-geist-mono), monospace; letter-spacing: .14em; text-transform: uppercase; opacity: calc(1 - var(--i) * .28); }
+.pscene.is-live .ps-layer i { position: absolute; inset: 26px 12px 12px; border-radius: 8px; background: repeating-linear-gradient(135deg, rgba(255,170,110,.09) 0 9px, transparent 9px 18px); }
 
 /* El objeto protagonista */
 .pscene.is-live .ps-frame { position: absolute; opacity: var(--build, 0); transform: translate3d(calc(var(--mx, 0) * 16px), calc(var(--my, 0) * 11px), 0) rotateX(calc(16deg - 16deg * var(--final, 0) + var(--my, 0) * -3deg)) rotateY(calc(-28deg + 28deg * var(--final, 0) + var(--mx, 0) * 5deg)) rotateZ(calc(-4deg + 4deg * var(--final, 0))) scale(calc(.78 + .22 * var(--final, 0))); }
@@ -391,6 +392,7 @@ em { font-family: Georgia, serif; font-weight: 400; }
   .pscene.is-live .ps-phases { min-height: 230px; }
   .pscene.is-live .ps-text { max-width: none; font-size: 15px; }
   .pscene.is-live .ps-chips, .pscene.is-live .ps-layers { display: none; }
+  .pscene.is-live .ps-glow { left: 50%; top: 68%; }
   .pscene.is-live .ps-progress { bottom: -22px; grid-template-columns: repeat(4, 1fr); width: 100%; }
   .pscene.is-live .ps-tag { translate: calc(var(--ps-frame-w) * .04) calc(var(--ps-frame-w) * .22); padding: 9px 12px; font-size: 11px; }
   .pscene.is-live .ps-frame, .pscene.is-live .ps-layer { transform: translate3d(0, 0, 0) rotateX(calc(13deg - 13deg * var(--final, 0))) rotateY(calc(-18deg + 18deg * var(--final, 0))) scale(calc(.86 + .14 * var(--final, 0))); }
