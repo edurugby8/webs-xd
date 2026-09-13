@@ -222,7 +222,7 @@ export function ProjectsScene() {
                   <span />
                   <span />
                 </div>
-                <strong>Mochilas para el norte.</strong>
+                <strong>Mochilas para toda España.</strong>
                 <p>Diseño resistente para todos los días.</p>
                 <div className="d-cards">
                   <i />
