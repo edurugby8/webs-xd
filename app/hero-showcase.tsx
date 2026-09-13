@@ -56,6 +56,12 @@ export function HeroShowcase() {
         <p><span>CodeCraft / Experiencias digitales</span><b>0{active + 1} — 04</b></p>
         <h1 key={project.key}>{project.title.split("\n").map((line) => <span key={line}>{line}</span>)}</h1>
         <p className="showcase-lead">{project.detail}</p>
+        <a className="showcase-guide" href="/preparar-proyecto">
+          Preparar mi proyecto
+          <svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16">
+            <path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
+          </svg>
+        </a>
       </div>
 
       <div className="showcase-stage" onMouseMove={handleMove} onMouseLeave={resetTilt}>
