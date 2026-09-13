@@ -6,6 +6,11 @@ export const Arrow = () => (
   </svg>
 );
 
+export const CONTACT = {
+  email: "codecraftwebesp@gmail.com",
+  instagram: "https://www.instagram.com/codecraft.es/",
+};
+
 const links = [
   ["Servicios", "/servicios"],
   ["Cómo trabajamos", "/como-trabajamos"],
@@ -23,14 +28,14 @@ export function SiteHeader() {
       <nav className="desktop-nav" aria-label="Navegación principal">
         {links.map(([label, href]) => <a href={href} key={href}>{label}</a>)}
       </nav>
-      <a className="header-contact" href="https://www.instagram.com/codecraft.es/" target="_blank" rel="noreferrer">
+      <a className="header-contact" href={CONTACT.instagram} target="_blank" rel="noreferrer">
         Contacto <Arrow />
       </a>
       <details className="mobile-menu">
         <summary aria-label="Abrir navegación"><span /><span /></summary>
         <nav>
           {links.map(([label, href]) => <a href={href} key={href}>{label}<Arrow /></a>)}
-          <a href="https://www.instagram.com/codecraft.es/" target="_blank" rel="noreferrer">Contacto<Arrow /></a>
+          <a href={CONTACT.instagram} target="_blank" rel="noreferrer">Contacto<Arrow /></a>
         </nav>
       </details>
     </header>
@@ -45,7 +50,10 @@ export function SiteFooter() {
           <span className="brand-symbol" aria-hidden="true"><i /><i /><i /><i /></span>
           <span>CodeCraft<span className="brand-dot">.</span></span>
         </a>
-        <p>Un estudio digital para publicar ideas en internet.</p>
+        <p>
+          Un estudio digital para publicar ideas en internet.
+          <a className="footer-mail" href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>
+        </p>
         <nav aria-label="Navegación del pie">
           {links.map(([label, href]) => <a href={href} key={href}>{label}</a>)}
         </nav>
@@ -53,7 +61,8 @@ export function SiteFooter() {
       <div className="footer-bottom">
         <span>© 2026 CodeCraft</span>
         <span>Ourense · Galicia</span>
-        <a href="https://www.instagram.com/codecraft.es/" target="_blank" rel="noreferrer">Instagram ↗</a>
+        <a href="/aviso-legal">Aviso legal</a>
+        <a href={CONTACT.instagram} target="_blank" rel="noreferrer">Instagram ↗</a>
       </div>
     </footer>
   );
@@ -79,8 +88,9 @@ export function ContactBand() {
       <div>
         <p>¿Tienes una idea?</p>
         <h2>Vamos a publicarla.</h2>
+        <a className="contact-mail" href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>
       </div>
-      <a className="button button-accent" href="https://www.instagram.com/codecraft.es/" target="_blank" rel="noreferrer">
+      <a className="button button-accent" href={CONTACT.instagram} target="_blank" rel="noreferrer">
         Cuéntanos tu proyecto <Arrow />
       </a>
     </section>

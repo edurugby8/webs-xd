@@ -707,3 +707,46 @@ main { position: relative; z-index: 0; }
 @media (prefers-reduced-motion: reduce) {
   .aurora-blob { animation: none !important; }
 }
+
+/* ==========================================================================
+   Páginas de texto legal + contacto por correo
+   ========================================================================== */
+
+/* El texto legal va sobre su propia superficie de cristal: es una página
+   densa en texto y, centrada, caía justo sobre el núcleo verde de la aurora
+   (los enlaces en lima bajaban a 1,7:1). */
+.legal-doc {
+  width: min(940px, calc(100% - 48px)); margin: 62px auto 120px;
+  padding: 14px clamp(26px, 4vw, 62px) 48px;
+  border: 1px solid var(--line); border-radius: 28px; background: var(--panel);
+  -webkit-backdrop-filter: blur(16px) saturate(125%);
+          backdrop-filter: blur(16px) saturate(125%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.06), 0 26px 60px -34px rgba(2,5,14,.85);
+}
+.legal-doc article { padding: 36px 0; border-top: 1px solid var(--line); }
+.legal-doc article:last-child { border-bottom: 1px solid var(--line); }
+.legal-doc h2 { margin: 0 0 20px; font-size: clamp(21px, 2.3vw, 28px); letter-spacing: -.04em; }
+.legal-doc p { margin: 0 0 15px; color: #b4bccd; font-size: 15px; line-height: 1.78; }
+.legal-doc p:last-child { margin-bottom: 0; }
+.legal-doc strong { color: var(--text); font-weight: 700; }
+.legal-doc a { color: var(--lime); border-bottom: 1px solid rgba(199,255,56,.4); transition: border-color .2s ease; }
+.legal-doc a:hover { border-bottom-color: var(--lime); }
+
+.legal-data { margin: 0; display: grid; gap: 14px; }
+.legal-data > div { display: grid; grid-template-columns: 170px 1fr; gap: 20px; align-items: baseline; }
+.legal-data dt { color: #8d97ab; font: 600 9px/1.7 var(--font-geist-mono), monospace; text-transform: uppercase; letter-spacing: .11em; }
+.legal-data dd { margin: 0; color: var(--text); font-size: 15px; }
+.legal-updated { margin-top: 32px !important; color: #7f8a9e; font: 600 9px/1 var(--font-geist-mono), monospace; letter-spacing: .11em; text-transform: uppercase; }
+
+.contact-mail { display: inline-block; margin-top: 18px; padding-bottom: 5px; border-bottom: 1px solid rgba(115,232,255,.45); color: var(--cyan); font: 600 12px/1 var(--font-geist-mono), monospace; transition: border-color .2s ease; }
+.contact-mail:hover { border-bottom-color: var(--cyan); }
+.footer-mail { display: block; margin-top: 12px; color: var(--cyan); font: 600 12px/1 var(--font-geist-mono), monospace; }
+.footer-mail:hover { color: var(--lime); }
+.footer-bottom a:hover { color: var(--lime); }
+
+@media (max-width: 640px) {
+  .legal-doc { width: calc(100% - 28px); margin: 40px auto 90px; padding: 8px 20px 34px; border-radius: 22px; }
+  .legal-doc article { padding: 30px 0; }
+  .legal-data > div { grid-template-columns: 1fr; gap: 5px; }
+  .legal-doc p { font-size: 14.5px; }
+}
