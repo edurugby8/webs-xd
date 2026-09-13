@@ -4,8 +4,8 @@ import { useEffect, useRef, useState, type CSSProperties, type MouseEvent } from
 
 const projects = [
   { id: "01", key: "landing", label: "Landing", title: "Haz que te\nrecuerden.", accent: "#c7ff38", detail: "Una primera impresión que convierte visitas en oportunidades.", stat: "01.8s", statLabel: "carga", theme: "NÓMADA" },
-  { id: "02", key: "catalog", label: "Catálogo", title: "Todo lo que\nofreces.", accent: "#ff795f", detail: "Productos claros, visuales y fáciles de descubrir desde cualquier dispositivo.", stat: "+42%", statLabel: "consulta", theme: "FORMA" },
-  { id: "03", key: "store", label: "Tienda", title: "Tu negocio,\nabierto siempre.", accent: "#73e8ff", detail: "Una experiencia de compra rápida, cuidada y preparada para vender.", stat: "24/7", statLabel: "online", theme: "SAVIA" },
+  { id: "02", key: "catalog", label: "Catálogo", title: "Todo lo que\nofreces.", accent: "#2fe0a8", detail: "Productos claros, visuales y fáciles de descubrir desde cualquier dispositivo.", stat: "14,99 €", statLabel: "desde", theme: "NORTEPACK", url: "nortepack.es/catalogo" },
+  { id: "03", key: "store", label: "Tienda", title: "Tu negocio,\nabierto siempre.", accent: "#73e8ff", detail: "Una experiencia de compra rápida, cuidada y preparada para vender.", stat: "24/7", statLabel: "online", theme: "NORTEPACK", url: "nortepack.es" },
   { id: "04", key: "dashboard", label: "Panel / App", title: "Todo bajo\ncontrol.", accent: "#d7a7ff", detail: "Herramientas digitales útiles para gestionar, medir y hacer crecer tu proyecto.", stat: "100%", statLabel: "a medida", theme: "PULSO" },
 ];
 
@@ -72,7 +72,7 @@ export function HeroShowcase() {
         <div className="browser-echo echo-back" aria-hidden="true"><span /><span /><span /><strong>{project.theme}</strong><i /></div>
         <div className="browser-echo echo-mid" aria-hidden="true"><span /><span /><span /><strong>{project.label}</strong><i /></div>
         <div className={`browser-project ${project.key}`} key={project.key} aria-label={`Ejemplo animado de ${project.label}`}>
-          <div className="browser-bar"><i /><i /><i /><span>codecraft.es/{project.key}</span><b>↗</b></div>
+          <div className="browser-bar"><i /><i /><i /><span>{project.url ?? `codecraft.es/${project.key}`}</span><b>↗</b></div>
           <div className="browser-content">
             {project.key === "landing" && <LandingMock />}
             {project.key === "catalog" && <CatalogMock />}
@@ -119,8 +119,54 @@ function LandingMock() {
   return <div className="mock-landing"><nav><strong>BRAVA®</strong><span>TRABAJO</span><span>ESTUDIO</span><b>HABLEMOS ↗</b></nav><div className="landing-index">01 / 04</div><small>ESTUDIO CREATIVO INDEPENDIENTE</small><h2>Marcas<br />con <em>pulso.</em></h2><p>Dirección creativa y experiencias digitales<br />para proyectos que no quieren pasar desapercibidos.</p><button>VER PROYECTOS ↗</button><div className="orb"><i /><i /><i /></div><div className="landing-marquee">IDENTIDAD — DIRECCIÓN — DIGITAL — IDENTIDAD —</div></div>;
 }
 
+const nortepackBasics = [
+  { key: "azul", name: "Básica Azul", color: "azul", copy: "Ligera, cómoda y perfecta para uso diario." },
+  { key: "roja", name: "Básica Roja", color: "rojo", copy: "Ideal para estudio, trabajo o desplazamientos ligeros." },
+  { key: "negra", name: "Básica Negra", color: "negro", copy: "Un diseño sobrio, combinable y siempre acertado." },
+  { key: "blanca", name: "Básica Blanca", color: "blanco", copy: "Estilo limpio y actual para cualquier ocasión." },
+];
+
 function CatalogMock() {
-  return <div className="mock-catalog"><nav><strong>FORMA</strong><span>COLECCIÓN</span><span>MATERIALES</span><span>ÍNDICE</span><b>ES / EN</b></nav><header><small>ARCHIVO DE OBJETOS — Nº 24</small><h2>Una colección<br />para <i>habitar.</i></h2><p>Piezas esenciales. Materiales honestos.<br />Diseño para todos los días.</p></header><div className="catalog-cards"><article><i /><b>01 — ARC</b><small>ROBLE / ACERO</small></article><article><i /><b>02 — MONO</b><small>PIEDRA / LINO</small></article><article><i /><b>03 — NIDO</b><small>BARRO / VIDRIO</small></article></div><footer><span>DESLIZA PARA EXPLORAR</span><b>2026 © FORMA STUDIO</b></footer></div>;
+  return (
+    <div className="mock-catalog">
+      <nav>
+        <i className="np-mark" />
+        <span className="np-brand"><strong>NORTEPACK</strong><small>Mochilas desde Ourense · Envíos 24/48 h</small></span>
+        <span className="np-link">Catálogo</span>
+        <span className="np-link">Cómo comprar</span>
+        <span className="np-link">Sobre nosotros</span>
+        <span className="np-link">Colaboradores</span>
+        <span className="np-theme">✳ CLARO</span>
+        <b>Ver carrito</b>
+      </nav>
+
+      <div className="np-filters">
+        <em className="np-claim">DISEÑO PRÁCTICO · <i>PRECIO JUSTO</i></em>
+        <em className="np-claim">SUEÑA · CARGA · AVANZA</em>
+        <span className="np-tabs"><i>Ver todo</i><i className="is-on">Básicas</i><i>Nortepack Core</i></span>
+      </div>
+
+      <section className="np-panel">
+        <span className="np-line">LÍNEA BÁSICAS</span>
+        <h2>BÁSICAS · funcionales, cómodas y versátiles</h2>
+        <p>La mejor opción si buscas una mochila práctica para el día a día con una excelente relación calidad-precio.</p>
+        <div className="np-grid">
+          {nortepackBasics.map((item) => (
+            <article key={item.key} className={`np-card np-${item.key}`}>
+              <span className="np-shot"><i /></span>
+              <span className="np-head"><b>{item.name}</b><u>14,99 €</u></span>
+              <p>{item.copy}</p>
+              <span className="np-tags"><em>Color: {item.color}</em><em>Funcional y resistente</em><em>Envío 24/48 h</em></span>
+              <button type="button" className="np-add" tabIndex={-1} aria-hidden="true">Añadir al pedido</button>
+              <button type="button" className="np-wa" tabIndex={-1} aria-hidden="true">Comprar por WhatsApp</button>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <span className="np-cart"><small>CARRITO</small><i>0</i></span>
+    </div>
+  );
 }
 
 function StoreMock() {
