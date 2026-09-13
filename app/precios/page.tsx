@@ -28,7 +28,10 @@ export default function Precios() {
         ))}
       </section>
       <section className="pricing-guide">
-        <p>¿No sabes cuál encaja contigo?</p>
+        <div>
+          <h2>¿No sabes cuál encaja contigo?</h2>
+          <p>Responde tres preguntas y consulta tu presupuesto orientativo.</p>
+        </div>
         <a className="button button-primary" href="/preparar-proyecto">Preparar mi proyecto <Arrow /></a>
       </section>
       <section className="extras-section">

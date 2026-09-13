@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { Arrow, CONTACT } from "./components";
 import {
   MATERIALES,
@@ -10,6 +11,7 @@ import {
   eur,
   extrasPara,
   importeBase,
+  objetivoValido,
   type MaterialId,
   type ObjetivoId,
 } from "./catalogo";
@@ -17,8 +19,14 @@ import {
 const PASOS = ["Qué quieres conseguir", "Qué tienes preparado", "Qué quieres añadir"];
 
 export function Selector() {
+  // La elección puede venir de las tarjetas de Precios (?objetivo=...). Se valida
+  // contra la lista real: un valor desconocido o ausente arranca en blanco, igual
+  // que entrando directamente al selector.
+  const parametros = useSearchParams();
+  const objetivoInicial = objetivoValido(parametros.get("objetivo"));
+
   const [paso, setPaso] = useState(0); // 0,1,2 = pasos · 3 = resultado
-  const [objetivo, setObjetivo] = useState<ObjetivoId | null>(null);
+  const [objetivo, setObjetivo] = useState<ObjetivoId | null>(objetivoInicial);
   const [materiales, setMateriales] = useState<MaterialId[]>([]);
   const [extrasSel, setExtrasSel] = useState<string[]>([]);
   const [resumen, setResumen] = useState("");
@@ -263,10 +271,7 @@ export function Selector() {
               <>
                 <p className="resultado-subtitulo">Lo que incluye</p>
                 <ul className="resultado-incluye">
-                  {desglosePaquete(paquete.id).map((parte) => {
-                    const def = PAQUETES.find((p) => p.nombre === parte.nombre);
-                    return def?.incluye.map((punto) => <li key={`${def.id}-${punto}`}>{punto}</li>);
-                  })}
+                  {paquete.incluye.map((punto) => <li key={punto}>{punto}</li>)}
                 </ul>
                 {alternativa && (
                   <p className="resultado-nota">
