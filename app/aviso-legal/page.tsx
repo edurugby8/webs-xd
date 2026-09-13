@@ -14,7 +14,7 @@ export const metadata: Metadata = {
  * que es el momento en que la LSSI exige publicarlos.
  */
 const TITULAR = {
-  nombre: "",
+  nombre: "Eduardo Babarro Romay",
   nombreComercial: "CodeCraft",
   nif: "",
   domicilio: "",
@@ -25,8 +25,8 @@ const ACTUALIZADO = "Septiembre de 2026";
 
 export default function AvisoLegal() {
   const filas: [string, string][] = [
-    ["Nombre comercial", TITULAR.nombreComercial],
     ...(TITULAR.nombre ? ([["Titular", TITULAR.nombre]] as [string, string][]) : []),
+    ["Nombre comercial", TITULAR.nombreComercial],
     ...(TITULAR.nif ? ([["NIF", TITULAR.nif]] as [string, string][]) : []),
     ...(TITULAR.domicilio ? ([["Domicilio", TITULAR.domicilio]] as [string, string][]) : []),
     ["Ubicación", TITULAR.localidad],
