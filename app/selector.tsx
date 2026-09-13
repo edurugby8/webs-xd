@@ -188,12 +188,6 @@ export function Selector() {
       {paso === 0 && (
         <fieldset className="selector-campo">
           <legend className="visually-hidden">¿Qué quieres conseguir?</legend>
-          {objetivoInicial === "catalogo" && (
-            <p className="selector-nota">
-              Vienes desde <strong>Catálogo o tienda</strong>. Si además quieres cobrar por la web, marca «Vender online»: el
-              precio de partida es el mismo y solo cambian los extras que te proponemos.
-            </p>
-          )}
           <div className="opciones">
             {OBJETIVOS.map((item) => (
               <div className="opcion" key={item.id}>
@@ -277,10 +271,7 @@ export function Selector() {
               <>
                 <p className="resultado-subtitulo">Lo que incluye</p>
                 <ul className="resultado-incluye">
-                  {desglosePaquete(paquete.id).map((parte) => {
-                    const def = PAQUETES.find((p) => p.nombre === parte.nombre);
-                    return def?.incluye.map((punto) => <li key={`${def.id}-${punto}`}>{punto}</li>);
-                  })}
+                  {paquete.incluye.map((punto) => <li key={punto}>{punto}</li>)}
                 </ul>
                 {alternativa && (
                   <p className="resultado-nota">

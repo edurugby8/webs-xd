@@ -772,12 +772,6 @@ main { position: relative; z-index: 0; }
 .showcase-guide:hover svg { transform: translateX(3px); }
 
 /* Desglose bajo el importe de la tarjeta, cuando el paquete se apoya en otro */
-/* La descripción reserva 75px para que las tres tarjetas alineen su lista. En la
-   tarjeta con desglose, esa línea (4px de margen + 19px) y la descripción suman
-   los mismos 75px. */
-.price-card > p.price-detalle { min-height: 0; margin: 4px 0 0; font-size: 12.5px; line-height: 1.5; opacity: .85; }
-.price-detalle + p { min-height: 52px; }
-
 /* Acceso al selector: tarjeta entre los paquetes y los extras */
 .pricing-guide {
   width: min(1320px, calc(100% - 48px)); margin: -70px auto 48px; padding: 34px 38px;
@@ -899,6 +893,10 @@ main { position: relative; z-index: 0; }
 
 .button:focus-visible, .showcase-guide:focus-visible { outline: 2px solid var(--lime); outline-offset: 3px; }
 
+/* Cuatro paquetes. Las reglas van con min-width para no pisar la de ≤1000px,
+   que apila las tarjetas y está declarada antes en este mismo archivo. */
+@media (min-width: 1001px) { .pricing-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1241px) { .pricing-grid { grid-template-columns: repeat(4, 1fr); } }
 @media (max-width: 1000px) {
   .pricing-guide { margin: -40px auto 40px; }
 }

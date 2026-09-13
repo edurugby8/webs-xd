@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Arrow, ContactBand, PageHero, PageShell } from "../components";
-import { EXTRAS, NOTAS, PAQUETES, precioTarjeta } from "../catalogo";
+import { EXTRAS, NOTAS, PAQUETES } from "../catalogo";
 
 export const metadata: Metadata = { title: "Precios | CodeCraft", description: "Precios orientativos de páginas web, catálogos, tiendas online y extras de CodeCraft." };
 
@@ -11,14 +11,11 @@ export default function Precios() {
         Sencillo de entender.<br /><em>Claro</em> desde el inicio.
       </PageHero>
       <section className="pricing-grid">
-        {PAQUETES.map((paquete) => {
-          const precio = precioTarjeta(paquete.id);
-          return (
+        {PAQUETES.map((paquete) => (
           <article className={`price-card${paquete.destacado ? " price-main" : ""}`} key={paquete.id}>
             <span>{paquete.codigo}</span>
             <h2>{paquete.nombre}</h2>
-            <div className="price">{precio.importe}</div>
-            {precio.detalle && <p className="price-detalle">{precio.detalle}</p>}
+            <div className="price">{paquete.precioEtiqueta}</div>
             <p>{paquete.descripcion}</p>
             <ul>{paquete.incluye.map((punto) => <li key={punto}>{punto}</li>)}</ul>
             <a
@@ -28,8 +25,7 @@ export default function Precios() {
               {paquete.enlace.texto} <Arrow />
             </a>
           </article>
-          );
-        })}
+        ))}
       </section>
       <section className="pricing-guide">
         <div>

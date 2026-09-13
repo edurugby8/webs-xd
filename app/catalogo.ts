@@ -5,19 +5,17 @@
  */
 
 export type ObjetivoId = "presentar" | "instagram" | "catalogo" | "vender" | "mejorar" | "no_claro";
-export type PaqueteId = "basica" | "catalogo" | "instagram";
+export type PaqueteId = "basica" | "catalogo" | "tienda" | "instagram";
 export type MaterialId = "logo" | "textos" | "fotos" | "dominio" | "nada";
 
 export type Paquete = {
   id: PaqueteId;
   codigo: string;
   nombre: string;
-  /** Etiqueta tal y como aparece publicada ("+150 €" en el suplemento). */
+  /** Etiqueta publicada del precio completo del paquete. */
   precioEtiqueta: string;
-  /** Importe de este concepto por separado, en euros. */
+  /** Precio completo del paquete, en euros. Ningún paquete se suma a otro. */
   importe: number;
-  /** Si el paquete se suma a otro, el id de ese otro (catálogo va sobre la básica). */
-  seSumaA?: PaqueteId;
   descripcion: string;
   incluye: string[];
   enlace: { texto: string; href: string; externo?: boolean };
@@ -29,8 +27,8 @@ export const PAQUETES: Paquete[] = [
     id: "basica",
     codigo: "01 / ESENCIAL",
     nombre: "Web básica",
-    precioEtiqueta: "75 €",
-    importe: 75,
+    precioEtiqueta: "295 €",
+    importe: 295,
     descripcion: "Una presencia web sencilla para publicar tu negocio o idea.",
     incluye: ["Inicio", "Quiénes somos", "Servicios", "Contacto y WhatsApp", "Diseño móvil"],
     enlace: { texto: "Preparar mi web", href: "/preparar-proyecto?objetivo=presentar" },
@@ -39,20 +37,29 @@ export const PAQUETES: Paquete[] = [
   {
     id: "catalogo",
     codigo: "02 / CATÁLOGO",
-    nombre: "Catálogo o tienda",
-    precioEtiqueta: "+150 €",
-    importe: 150,
-    seSumaA: "basica",
-    descripcion: "Se añade a la web básica para mostrar o vender productos.",
-    incluye: ["Fichas de producto", "Categorías", "Carrito o pedidos", "Proceso de compra", "Gestión inicial"],
-    enlace: { texto: "Preparar mi catálogo o tienda", href: "/preparar-proyecto?objetivo=catalogo" },
+    nombre: "Catálogo",
+    precioEtiqueta: "495 €",
+    importe: 495,
+    descripcion: "Una web completa para mostrar tus productos, sin cobro online.",
+    incluye: ["Todo lo de la web básica", "Fichas de producto", "Categorías", "Gestión inicial"],
+    enlace: { texto: "Preparar mi catálogo", href: "/preparar-proyecto?objetivo=catalogo" },
+  },
+  {
+    id: "tienda",
+    codigo: "03 / TIENDA",
+    nombre: "Tienda online",
+    precioEtiqueta: "890 €",
+    importe: 890,
+    descripcion: "Una web completa para vender online, con carrito y pagos.",
+    incluye: ["Todo lo de la web básica", "Fichas de producto", "Categorías", "Carrito o pedidos", "Proceso de compra", "Gestión inicial"],
+    enlace: { texto: "Preparar mi tienda online", href: "/preparar-proyecto?objetivo=vender" },
   },
   {
     id: "instagram",
-    codigo: "03 / PRESENCIA",
+    codigo: "04 / PRESENCIA",
     nombre: "Web + Instagram",
-    precioEtiqueta: "150 €",
-    importe: 150,
+    precioEtiqueta: "395 €",
+    importe: 395,
     descripcion: "Una base web acompañada por la preparación visual del perfil.",
     incluye: ["Web esencial", "Ajuste del perfil", "Imagen coherente", "Contenido inicial", "Conexión entre canales"],
     enlace: { texto: "Preparar mi web + Instagram", href: "/preparar-proyecto?objetivo=instagram" },
@@ -126,19 +133,19 @@ export const OBJETIVOS: Objetivo[] = [
     id: "instagram",
     etiqueta: "Presentar mi negocio y preparar mi Instagram",
     recomienda: "instagram",
-    porque: "El pack de presencia ya lleva dentro la web esencial y además prepara el perfil, así que no hay que sumar la web básica por separado.",
+    porque: "El pack de presencia lleva dentro la web esencial y además prepara el perfil. Es un precio completo.",
   },
   {
     id: "catalogo",
     etiqueta: "Mostrar un catálogo",
     recomienda: "catalogo",
-    porque: "Para enseñar productos hacen falta fichas y categorías, que se añaden sobre la web básica.",
+    porque: "Para enseñar productos hacen falta fichas y categorías. El catálogo ya lleva la web dentro, así que es un precio completo.",
   },
   {
     id: "vender",
     etiqueta: "Vender online",
-    recomienda: "catalogo",
-    porque: "Vender necesita además carrito y proceso de compra, incluidos en el catálogo o tienda sobre la web básica.",
+    recomienda: "tienda",
+    porque: "Cobrar online necesita carrito y proceso de compra. La tienda ya lleva dentro la web y el catálogo, así que es un precio completo.",
   },
   {
     id: "mejorar",
@@ -162,19 +169,15 @@ export const MATERIALES: { id: MaterialId; etiqueta: string }[] = [
   { id: "nada", etiqueta: "Todavía no tengo nada" },
 ];
 
-/** Importe de partida del paquete, sumando el paquete base cuando lo hay. */
+/** Precio completo del paquete. Ningún paquete se suma a otro. */
 export function importeBase(id: PaqueteId): number {
-  const paquete = PAQUETES.find((p) => p.id === id);
-  if (!paquete) return 0;
-  return paquete.importe + (paquete.seSumaA ? importeBase(paquete.seSumaA) : 0);
+  return PAQUETES.find((p) => p.id === id)?.importe ?? 0;
 }
 
-/** Desglose del precio de partida: la básica más el suplemento, si procede. */
+/** Desglose del precio de partida: una sola línea, el propio paquete. */
 export function desglosePaquete(id: PaqueteId): { nombre: string; importe: number }[] {
   const paquete = PAQUETES.find((p) => p.id === id);
-  if (!paquete) return [];
-  const previos = paquete.seSumaA ? desglosePaquete(paquete.seSumaA) : [];
-  return [...previos, { nombre: paquete.nombre, importe: paquete.importe }];
+  return paquete ? [{ nombre: paquete.nombre, importe: paquete.importe }] : [];
 }
 
 /** Extras que se ofrecen para un objetivo, sin los que el paquete ya incluye. */
@@ -188,23 +191,6 @@ export function extrasPara(objetivo: ObjetivoId, paquete: PaqueteId | null): Ext
 }
 
 export const eur = (importe: number) => `${importe} €`;
-
-/**
- * Cómo se muestra el precio en la tarjeta de Precios: el importe completo y,
- * cuando el paquete se apoya en otro, de qué se compone. Se calcula desde los
- * mismos datos que usa el selector, así que no puede descuadrarse.
- */
-export function precioTarjeta(id: PaqueteId): { importe: string; detalle: string | null } {
-  const paquete = PAQUETES.find((p) => p.id === id);
-  if (!paquete) return { importe: "", detalle: null };
-  const previo = paquete.seSumaA ? PAQUETES.find((p) => p.id === paquete.seSumaA) : undefined;
-  return {
-    importe: eur(importeBase(id)),
-    detalle: previo
-      ? `${eur(importeBase(previo.id))} de ${previo.nombre.toLowerCase()} + ${eur(paquete.importe)} de ampliación`
-      : null,
-  };
-}
 
 /** Valida un objetivo que llega por la dirección; devuelve null si no vale. */
 export function objetivoValido(valor: string | null | undefined): ObjetivoId | null {
