@@ -629,6 +629,17 @@ main { position: relative; z-index: 0; }
           mask-image: linear-gradient(180deg, transparent, #000 5%, #000 95%, transparent);
 }
 
+/* Cabecera de las páginas interiores: el núcleo verde cae justo bajo el
+   titular (que lleva el acento en lima), así que lleva una base oscura
+   elíptica. Va como hermana de la <section> y no dentro, porque .page-hero
+   recorta con overflow:hidden y el borde del recorte se veía como una línea
+   recta; así el degradado se apaga solo, ya fuera de la columna de texto. */
+.page-hero-wash {
+  position: absolute; z-index: 0; pointer-events: none;
+  left: 0; right: 0; top: 0; height: min(920px, 108vh);
+  background: radial-gradient(46% 54% at 24% 50%, rgba(3,7,17,.88), rgba(3,7,17,.5) 50%, transparent 76%);
+}
+
 /* Legibilidad de los textos pequeños sobre las zonas con color */
 .page-kicker span { color: #909cb4; }
 .stage-label { color: #808b9e; }

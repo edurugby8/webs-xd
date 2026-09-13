@@ -61,12 +61,15 @@ export function SiteFooter() {
 
 export function PageHero({ number, label, children, description }: { number: string; label: string; children: ReactNode; description: string }) {
   return (
-    <section className="page-hero">
-      <div className="page-orbit" aria-hidden="true"><i /><i /><i /></div>
-      <p className="page-kicker"><span>{number}</span>{label}</p>
-      <h1>{children}</h1>
-      <p className="page-description">{description}</p>
-    </section>
+    <>
+      <div className="page-hero-wash" aria-hidden="true" />
+      <section className="page-hero">
+        <div className="page-orbit" aria-hidden="true"><i /><i /><i /></div>
+        <p className="page-kicker"><span>{number}</span>{label}</p>
+        <h1>{children}</h1>
+        <p className="page-description">{description}</p>
+      </section>
+    </>
   );
 }
 
