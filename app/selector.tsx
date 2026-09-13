@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { Arrow, CONTACT } from "./components";
 import {
   MATERIALES,
@@ -10,6 +11,7 @@ import {
   eur,
   extrasPara,
   importeBase,
+  objetivoValido,
   type MaterialId,
   type ObjetivoId,
 } from "./catalogo";
@@ -17,8 +19,14 @@ import {
 const PASOS = ["Qué quieres conseguir", "Qué tienes preparado", "Qué quieres añadir"];
 
 export function Selector() {
+  // La elección puede venir de las tarjetas de Precios (?objetivo=...). Se valida
+  // contra la lista real: un valor desconocido o ausente arranca en blanco, igual
+  // que entrando directamente al selector.
+  const parametros = useSearchParams();
+  const objetivoInicial = objetivoValido(parametros.get("objetivo"));
+
   const [paso, setPaso] = useState(0); // 0,1,2 = pasos · 3 = resultado
-  const [objetivo, setObjetivo] = useState<ObjetivoId | null>(null);
+  const [objetivo, setObjetivo] = useState<ObjetivoId | null>(objetivoInicial);
   const [materiales, setMateriales] = useState<MaterialId[]>([]);
   const [extrasSel, setExtrasSel] = useState<string[]>([]);
   const [resumen, setResumen] = useState("");
@@ -180,6 +188,12 @@ export function Selector() {
       {paso === 0 && (
         <fieldset className="selector-campo">
           <legend className="visually-hidden">¿Qué quieres conseguir?</legend>
+          {objetivoInicial === "catalogo" && (
+            <p className="selector-nota">
+              Vienes desde <strong>Catálogo o tienda</strong>. Si además quieres cobrar por la web, marca «Vender online»: el
+              precio de partida es el mismo y solo cambian los extras que te proponemos.
+            </p>
+          )}
           <div className="opciones">
             {OBJETIVOS.map((item) => (
               <div className="opcion" key={item.id}>

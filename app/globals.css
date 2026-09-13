@@ -771,14 +771,28 @@ main { position: relative; z-index: 0; }
 .showcase-guide svg { transition: transform .2s ease; }
 .showcase-guide:hover svg { transform: translateX(3px); }
 
-/* Acceso desde Precios */
+/* Desglose bajo el importe de la tarjeta, cuando el paquete se apoya en otro */
+/* La descripción reserva 75px para que las tres tarjetas alineen su lista. En la
+   tarjeta con desglose, esa línea (4px de margen + 19px) y la descripción suman
+   los mismos 75px. */
+.price-card > p.price-detalle { min-height: 0; margin: 4px 0 0; font-size: 12.5px; line-height: 1.5; opacity: .85; }
+.price-detalle + p { min-height: 52px; }
+
+/* Acceso al selector: tarjeta entre los paquetes y los extras */
 .pricing-guide {
-  width: min(1320px, calc(100% - 48px)); margin: -40px auto 0; padding: 26px 30px;
-  border: 1px solid var(--line); border-radius: 22px; background: var(--panel-2);
-  -webkit-backdrop-filter: blur(14px) saturate(120%); backdrop-filter: blur(14px) saturate(120%);
-  display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;
+  width: min(1320px, calc(100% - 48px)); margin: -70px auto 48px; padding: 34px 38px;
+  border: 1px solid rgba(115,232,255,.26); border-radius: 26px;
+  background:
+    radial-gradient(circle at 12% 22%, rgba(115,232,255,.14), transparent 44%),
+    radial-gradient(circle at 88% 92%, rgba(199,255,56,.08), transparent 48%),
+    var(--panel);
+  -webkit-backdrop-filter: blur(16px) saturate(125%); backdrop-filter: blur(16px) saturate(125%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.06), 0 26px 60px -34px rgba(2,5,14,.85);
+  display: flex; align-items: center; justify-content: space-between; gap: 26px; flex-wrap: wrap;
 }
-.pricing-guide p { margin: 0; color: var(--text); font-size: 16px; font-weight: 600; }
+.pricing-guide h2 { margin: 0; font-size: clamp(24px, 2.9vw, 34px); line-height: 1.05; letter-spacing: -.045em; }
+.pricing-guide p { margin: 11px 0 0; color: var(--muted); font-size: 15px; line-height: 1.6; }
+.pricing-guide .button { flex: none; }
 
 .selector { width: min(1060px, calc(100% - 48px)); margin: 56px auto 0; padding: 0 0 40px; }
 
@@ -886,12 +900,12 @@ main { position: relative; z-index: 0; }
 .button:focus-visible, .showcase-guide:focus-visible { outline: 2px solid var(--lime); outline-offset: 3px; }
 
 @media (max-width: 1000px) {
-  .pricing-guide { margin-top: -20px; }
+  .pricing-guide { margin: -40px auto 40px; }
 }
 
 @media (max-width: 640px) {
   .selector { width: calc(100% - 28px); margin-top: 40px; }
-  .pricing-guide { width: calc(100% - 28px); margin-top: 0; padding: 22px; flex-direction: column; align-items: stretch; text-align: center; }
+  .pricing-guide { width: calc(100% - 28px); margin: -30px auto 36px; padding: 26px 22px; flex-direction: column; align-items: stretch; }
   .pricing-guide .button { width: 100%; }
   .selector-pasos { gap: 6px; margin-bottom: 26px; }
   .selector-pasos li { flex-direction: column; align-items: flex-start; gap: 7px; font-size: 11px; line-height: 1.3; }

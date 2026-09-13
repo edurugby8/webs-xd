@@ -4,7 +4,7 @@
  * en Precios; si cambian aquí, cambian en los dos sitios a la vez.
  */
 
-export type ObjetivoId = "presentar" | "catalogo" | "vender" | "mejorar" | "no_claro";
+export type ObjetivoId = "presentar" | "instagram" | "catalogo" | "vender" | "mejorar" | "no_claro";
 export type PaqueteId = "basica" | "catalogo" | "instagram";
 export type MaterialId = "logo" | "textos" | "fotos" | "dominio" | "nada";
 
@@ -33,7 +33,7 @@ export const PAQUETES: Paquete[] = [
     importe: 75,
     descripcion: "Una presencia web sencilla para publicar tu negocio o idea.",
     incluye: ["Inicio", "Quiénes somos", "Servicios", "Contacto y WhatsApp", "Diseño móvil"],
-    enlace: { texto: "Pedir información", href: "https://www.instagram.com/codecraft.es/", externo: true },
+    enlace: { texto: "Preparar mi web", href: "/preparar-proyecto?objetivo=presentar" },
     destacado: true,
   },
   {
@@ -45,7 +45,7 @@ export const PAQUETES: Paquete[] = [
     seSumaA: "basica",
     descripcion: "Se añade a la web básica para mostrar o vender productos.",
     incluye: ["Fichas de producto", "Categorías", "Carrito o pedidos", "Proceso de compra", "Gestión inicial"],
-    enlace: { texto: "Ver el servicio", href: "/servicios" },
+    enlace: { texto: "Preparar mi catálogo o tienda", href: "/preparar-proyecto?objetivo=catalogo" },
   },
   {
     id: "instagram",
@@ -55,7 +55,7 @@ export const PAQUETES: Paquete[] = [
     importe: 150,
     descripcion: "Una base web acompañada por la preparación visual del perfil.",
     incluye: ["Web esencial", "Ajuste del perfil", "Imagen coherente", "Contenido inicial", "Conexión entre canales"],
-    enlace: { texto: "Consultar pack", href: "https://www.instagram.com/codecraft.es/", externo: true },
+    enlace: { texto: "Preparar mi web + Instagram", href: "/preparar-proyecto?objetivo=instagram" },
   },
 ];
 
@@ -81,16 +81,16 @@ export type Extra = {
 };
 
 export const EXTRAS: Extra[] = [
-  { id: "logo", nombre: "Diseño de logo", precioEtiqueta: "30 €", importe: 30, objetivos: ["presentar", "catalogo", "vender"] },
-  { id: "formulario", nombre: "Formulario + página de gracias", precioEtiqueta: "30 €", importe: 30, objetivos: ["presentar", "catalogo"] },
-  { id: "barra", nombre: "Barra informativa", precioEtiqueta: "30 €", importe: 30, objetivos: ["presentar", "catalogo", "vender"] },
-  { id: "pagina", nombre: "Página adicional", precioEtiqueta: "25 €", importe: 25, objetivos: ["presentar", "catalogo", "vender"] },
-  { id: "seo", nombre: "SEO básico para publicación", precioEtiqueta: "39 €", importe: 39, objetivos: ["presentar", "catalogo", "vender"] },
-  { id: "maps", nombre: "Google Maps / ficha de negocio", precioEtiqueta: "15 €", importe: 15, objetivos: ["presentar", "catalogo"] },
-  { id: "legales", nombre: "Textos legales básicos", precioEtiqueta: "25 €", importe: 25, objetivos: ["presentar", "catalogo", "vender"] },
+  { id: "logo", nombre: "Diseño de logo", precioEtiqueta: "30 €", importe: 30, objetivos: ["presentar", "instagram", "catalogo", "vender"] },
+  { id: "formulario", nombre: "Formulario + página de gracias", precioEtiqueta: "30 €", importe: 30, objetivos: ["presentar", "instagram", "catalogo"] },
+  { id: "barra", nombre: "Barra informativa", precioEtiqueta: "30 €", importe: 30, objetivos: ["presentar", "instagram", "catalogo", "vender"] },
+  { id: "pagina", nombre: "Página adicional", precioEtiqueta: "25 €", importe: 25, objetivos: ["presentar", "instagram", "catalogo", "vender"] },
+  { id: "seo", nombre: "SEO básico para publicación", precioEtiqueta: "39 €", importe: 39, objetivos: ["presentar", "instagram", "catalogo", "vender"] },
+  { id: "maps", nombre: "Google Maps / ficha de negocio", precioEtiqueta: "15 €", importe: 15, objetivos: ["presentar", "instagram", "catalogo"] },
+  { id: "legales", nombre: "Textos legales básicos", precioEtiqueta: "25 €", importe: 25, objetivos: ["presentar", "instagram", "catalogo", "vender"] },
   { id: "multiidioma", nombre: "Versión multiidioma", precioEtiqueta: "59 €", importe: 59, objetivos: ["catalogo", "vender"] },
-  { id: "qr", nombre: "Código QR", precioEtiqueta: "15 €", importe: 15, objetivos: ["presentar", "catalogo"] },
-  { id: "mantenimiento", nombre: "Mantenimiento web", precioEtiqueta: "desde 29 €/mes", importe: 29, desde: true, recurrente: "mes", objetivos: ["presentar", "catalogo", "vender"] },
+  { id: "qr", nombre: "Código QR", precioEtiqueta: "15 €", importe: 15, objetivos: ["presentar", "instagram", "catalogo"] },
+  { id: "mantenimiento", nombre: "Mantenimiento web", precioEtiqueta: "desde 29 €/mes", importe: 29, desde: true, recurrente: "mes", objetivos: ["presentar", "instagram", "catalogo", "vender"] },
 ];
 
 export const NOTAS = [
@@ -121,6 +121,12 @@ export const OBJETIVOS: Objetivo[] = [
     recomienda: "basica",
     porque: "Necesitas explicar quién eres y qué ofreces, y que te puedan contactar. Eso es justo el alcance de la web básica.",
     alternativa: "instagram",
+  },
+  {
+    id: "instagram",
+    etiqueta: "Presentar mi negocio y preparar mi Instagram",
+    recomienda: "instagram",
+    porque: "El pack de presencia ya lleva dentro la web esencial y además prepara el perfil, así que no hay que sumar la web básica por separado.",
   },
   {
     id: "catalogo",
@@ -182,3 +188,25 @@ export function extrasPara(objetivo: ObjetivoId, paquete: PaqueteId | null): Ext
 }
 
 export const eur = (importe: number) => `${importe} €`;
+
+/**
+ * Cómo se muestra el precio en la tarjeta de Precios: el importe completo y,
+ * cuando el paquete se apoya en otro, de qué se compone. Se calcula desde los
+ * mismos datos que usa el selector, así que no puede descuadrarse.
+ */
+export function precioTarjeta(id: PaqueteId): { importe: string; detalle: string | null } {
+  const paquete = PAQUETES.find((p) => p.id === id);
+  if (!paquete) return { importe: "", detalle: null };
+  const previo = paquete.seSumaA ? PAQUETES.find((p) => p.id === paquete.seSumaA) : undefined;
+  return {
+    importe: eur(importeBase(id)),
+    detalle: previo
+      ? `${eur(importeBase(previo.id))} de ${previo.nombre.toLowerCase()} + ${eur(paquete.importe)} de ampliación`
+      : null,
+  };
+}
+
+/** Valida un objetivo que llega por la dirección; devuelve null si no vale. */
+export function objetivoValido(valor: string | null | undefined): ObjetivoId | null {
+  return OBJETIVOS.some((o) => o.id === valor) ? (valor as ObjetivoId) : null;
+}

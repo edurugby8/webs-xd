@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { ContactBand, PageHero, PageShell } from "../components";
 import { Selector } from "../selector";
 
@@ -17,7 +18,9 @@ export default function PrepararProyecto() {
       >
         Encuentra la web que<br /><em>necesita tu negocio.</em>
       </PageHero>
-      <Selector />
+      <Suspense fallback={<div className="selector" aria-hidden="true" />}>
+        <Selector />
+      </Suspense>
       <ContactBand />
     </PageShell>
   );
