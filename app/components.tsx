@@ -61,12 +61,15 @@ export function SiteFooter() {
 
 export function PageHero({ number, label, children, description }: { number: string; label: string; children: ReactNode; description: string }) {
   return (
-    <section className="page-hero">
-      <div className="page-orbit" aria-hidden="true"><i /><i /><i /></div>
-      <p className="page-kicker"><span>{number}</span>{label}</p>
-      <h1>{children}</h1>
-      <p className="page-description">{description}</p>
-    </section>
+    <>
+      <div className="page-hero-wash" aria-hidden="true" />
+      <section className="page-hero">
+        <div className="page-orbit" aria-hidden="true"><i /><i /><i /></div>
+        <p className="page-kicker"><span>{number}</span>{label}</p>
+        <h1>{children}</h1>
+        <p className="page-description">{description}</p>
+      </section>
+    </>
   );
 }
 
@@ -84,6 +87,30 @@ export function ContactBand() {
   );
 }
 
+export function AuroraBackground() {
+  return (
+    <div className="aurora" aria-hidden="true">
+      <div className="aurora-base" />
+      <span className="aurora-blob ab-green" />
+      <span className="aurora-blob ab-teal" />
+      <span className="aurora-blob ab-cyan" />
+      <span className="aurora-blob ab-violet" />
+      <span className="aurora-blob ab-violet-b" />
+      <span className="aurora-blob ab-core" />
+      <div className="aurora-veil" />
+      <div className="aurora-grain" />
+    </div>
+  );
+}
+
 export function PageShell({ children }: { children: ReactNode }) {
-  return <main><SiteHeader />{children}<SiteFooter /></main>;
+  return (
+    <main>
+      <AuroraBackground />
+      <div className="page-wash" aria-hidden="true" />
+      <SiteHeader />
+      {children}
+      <SiteFooter />
+    </main>
+  );
 }

@@ -447,3 +447,263 @@ em { font-family: Georgia, serif; font-weight: 400; }
   .pcase-body h3 { font-size: 40px; }
   .pcase-body > p { font-size: 14px; }
 }
+
+/* ==========================================================================
+   AURORA DIGITAL — fondo continuo para toda la web
+   Base azul noche + grandes manchas de luz difuminada (verde eléctrico,
+   turquesa) con pequeños acentos violeta, grano muy fino y movimiento lento.
+   Solo se animan transform y opacity de unas pocas capas.
+   ========================================================================== */
+
+:root {
+  --bg: #050a16;
+  --panel: rgba(14,22,44,.58);
+  --panel-2: rgba(20,30,58,.55);
+  --line: rgba(170,198,255,.16);
+  --muted: #a6b1c8;
+  --teal: #2fe0c8;
+  --violet: #8b6cff;
+  --spring: #9dff5c;
+  --extras-bleed: 24px;
+}
+
+body { background: var(--bg); }
+main { position: relative; z-index: 0; }
+
+/* --- Capa fija: acompaña a toda la página sin cortes --- */
+.aurora { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; isolation: isolate; }
+
+.aurora-base {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(135% 95% at 50% -12%, #0d1c3a 0%, rgba(9,17,38,.6) 42%, transparent 68%),
+    radial-gradient(120% 80% at 50% 112%, #071528 0%, transparent 58%),
+    linear-gradient(180deg, #08142f 0%, #071331 48%, #050e24 100%);
+}
+
+.aurora-blob {
+  position: absolute; display: block; border-radius: 50%;
+  mix-blend-mode: screen; will-change: transform;
+  transform: translate3d(0,0,0);
+}
+
+/* Lateral izquierdo — verde eléctrico */
+.ab-green {
+  left: -42vw; top: -12vh; width: 90vw; height: 100vh;
+  background: radial-gradient(closest-side, rgba(166,255,100,.74), rgba(116,236,146,.34) 44%, rgba(52,170,140,.1) 70%, transparent 100%);
+  animation: aurora-a 42s ease-in-out infinite alternate;
+}
+/* Lateral derecho — turquesa */
+.ab-teal {
+  right: -40vw; top: 0; width: 92vw; height: 104vh;
+  background: radial-gradient(closest-side, rgba(45,240,220,.74), rgba(46,188,224,.32) 46%, transparent 78%);
+  animation: aurora-b 55s ease-in-out infinite alternate;
+}
+/* Inferior izquierda — azul turquesa profundo */
+.ab-cyan {
+  left: -36vw; top: 54vh; width: 80vw; height: 88vh;
+  background: radial-gradient(closest-side, rgba(70,178,255,.44), rgba(58,138,255,.18) 48%, transparent 78%);
+  animation: aurora-c 48s ease-in-out infinite alternate;
+}
+/* Acento violeta superior derecha */
+.ab-violet {
+  right: -10vw; top: -18vh; width: 52vw; height: 66vh;
+  background: radial-gradient(closest-side, rgba(157,110,255,.5), rgba(118,80,240,.18) 48%, transparent 76%);
+  animation: aurora-d 38s ease-in-out infinite alternate;
+}
+/* Acento violeta inferior izquierda */
+.ab-violet-b {
+  left: -6vw; bottom: -30vh; width: 44vw; height: 58vh;
+  background: radial-gradient(closest-side, rgba(132,94,255,.38), transparent 74%);
+  animation: aurora-e 61s ease-in-out infinite alternate;
+}
+/* Halo central suave: da color detrás de las demos sin quemar los textos */
+.ab-core {
+  left: 50%; top: 42vh; width: 98vw; height: 72vh; margin-left: -49vw;
+  background: radial-gradient(closest-side, rgba(46,218,200,.24), rgba(46,214,196,.08) 46%, transparent 76%);
+  animation: aurora-f 66s ease-in-out infinite alternate;
+}
+
+/* Velo de legibilidad: apaga el centro (donde vive el texto) y los bordes
+   superior e inferior, dejando la luz concentrada en los laterales. */
+.aurora-veil {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(62% 44% at 50% 34%, rgba(3,7,16,.56), rgba(3,7,16,.24) 58%, transparent 82%),
+    radial-gradient(95% 55% at 50% 106%, rgba(3,7,16,.32), transparent 74%),
+    linear-gradient(180deg, rgba(3,7,16,.6) 0%, rgba(3,7,16,.12) 16%, transparent 30%);
+}
+
+/* Grano muy fino */
+.aurora-grain {
+  position: absolute; inset: 0; opacity: .055;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23g)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
+
+/* --- Capa que acompaña al scroll: variación suave entre secciones --- */
+.page-wash {
+  position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    radial-gradient(58% 15% at 3% 11%, rgba(163,255,96,.15), transparent 72%),
+    radial-gradient(54% 13% at 99% 25%, rgba(45,238,218,.16), transparent 72%),
+    radial-gradient(50% 12% at 1% 43%, rgba(145,112,255,.13), transparent 72%),
+    radial-gradient(56% 14% at 100% 58%, rgba(163,255,96,.12), transparent 72%),
+    radial-gradient(50% 12% at 0% 74%, rgba(45,238,218,.15), transparent 72%),
+    radial-gradient(54% 13% at 99% 90%, rgba(145,112,255,.12), transparent 72%);
+}
+
+@keyframes aurora-a { from { transform: translate3d(0,0,0) scale(1); }      to { transform: translate3d(7vw,5vh,0) scale(1.16); } }
+@keyframes aurora-b { from { transform: translate3d(0,0,0) scale(1.08); }   to { transform: translate3d(-6vw,-6vh,0) scale(.94); } }
+@keyframes aurora-c { from { transform: translate3d(0,0,0) scale(.96); }    to { transform: translate3d(8vw,-7vh,0) scale(1.14); } }
+@keyframes aurora-d { from { transform: translate3d(0,0,0) scale(1); opacity: .7; }     to { transform: translate3d(-7vw,6vh,0) scale(1.2); opacity: 1; } }
+@keyframes aurora-e { from { transform: translate3d(0,0,0) scale(1.05); opacity: .55; } to { transform: translate3d(9vw,-5vh,0) scale(.9); opacity: .95; } }
+@keyframes aurora-f { from { transform: translate3d(-2vw,0,0) scale(1); }   to { transform: translate3d(2vw,-4vh,0) scale(1.1); } }
+
+/* --------------------------------------------------------------------------
+   Superficies sobre la aurora: nada de negros planos que corten el fondo
+   -------------------------------------------------------------------------- */
+
+/* Escena principal de portada */
+.showcase { background: linear-gradient(152deg, rgba(8,14,32,.24), rgba(5,10,24,.04) 46%, rgba(9,16,36,.22)); }
+.showcase::before {
+  background:
+    radial-gradient(ellipse at 50% 49%, color-mix(in srgb, var(--scene) 25%, transparent), transparent 29%),
+    radial-gradient(ellipse at 50% 88%, color-mix(in srgb, var(--scene) 12%, transparent), transparent 38%),
+    linear-gradient(125deg, rgba(5,10,22,.18) 12%, rgba(14,22,44,.03) 48%, rgba(5,10,22,.2) 88%);
+}
+.showcase::after { box-shadow: inset 0 0 0 1px rgba(180,205,255,.1), inset 0 -150px 160px rgba(4,8,18,.3); }
+
+/* Escena de "Cómo trabajamos" */
+.pscene-sticky { background: radial-gradient(88% 72% at 54% 48%, rgba(4,8,18,.86), rgba(5,10,22,.58) 52%, rgba(7,13,28,.14) 88%); }
+.ps-vignette { box-shadow: inset 0 0 0 1px rgba(180,205,255,.08), inset 0 -150px 160px rgba(4,8,18,.32), inset 0 120px 140px rgba(4,8,18,.24); }
+
+/* Tarjetas y paneles de cristal */
+.route-card.dark,
+.principles-grid article,
+.price-card,
+.pcase,
+.contact-band,
+.future-console {
+  -webkit-backdrop-filter: blur(16px) saturate(125%);
+  backdrop-filter: blur(16px) saturate(125%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.06), 0 26px 60px -34px rgba(2,5,14,.85);
+}
+.future-console {
+  border-color: rgba(115,232,255,.3);
+  background: radial-gradient(circle at 50% 45%, rgba(115,232,255,.12), transparent 48%), rgba(10,17,38,.6);
+}
+.contact-band { background: radial-gradient(circle at 18% 25%, rgba(115,232,255,.14), transparent 34%), var(--panel); }
+.console-center p { background: rgba(8,14,32,.9); }
+
+/* Chrome oscuro de las demos, afinado al azul noche */
+.scene-switcher { background: rgba(9,15,34,.72); }
+.floating-note { background: rgba(9,15,34,.84); }
+.device-ticket { background: rgba(9,15,34,.86); }
+.np-live-label { background: rgba(7,12,28,.88); }
+.pscene.is-live .ps-chips span { background: rgba(9,15,34,.74); }
+.pscene.is-live .ps-tag { background: rgba(9,15,34,.84); }
+.browser-echo { background: linear-gradient(155deg, color-mix(in srgb, var(--scene) 20%, #101a30), #060c1c); }
+
+.route-card.dark { background: linear-gradient(152deg, rgba(32,47,86,.6), rgba(13,21,44,.44)); }
+
+/* Navegación */
+.site-header { border-bottom-color: rgba(170,198,255,.18); }
+.desktop-nav { color: #ccd4e4; }
+
+/* Precios: los importes en lima llevan su propia base oscura. Se difumina
+   por los cuatro lados (a la izquierda dentro de la tabla, arriba y abajo con
+   una máscara, y a la derecha dentro del margen de la página) para que no se
+   note ningún borde y el color del fondo alrededor se mantenga. */
+.extras-table { position: relative; isolation: isolate; }
+.extras-table > div { position: relative; z-index: 1; }
+.extras-table::before {
+  content: ""; position: absolute; z-index: 0; pointer-events: none;
+  top: -20px; bottom: -20px; left: 34%; right: calc(-1 * var(--extras-bleed));
+  background:
+    linear-gradient(90deg, transparent, rgba(3,7,17,.5) 42%, rgba(3,7,17,.76) 78%, rgba(3,7,17,.76))
+      no-repeat left center / calc(100% - var(--extras-bleed)) 100%,
+    linear-gradient(90deg, rgba(3,7,17,.76), transparent)
+      no-repeat right center / var(--extras-bleed) 100%;
+  -webkit-mask-image: linear-gradient(180deg, transparent, #000 5%, #000 95%, transparent);
+          mask-image: linear-gradient(180deg, transparent, #000 5%, #000 95%, transparent);
+}
+
+/* Cabecera de las páginas interiores: el núcleo verde cae justo bajo el
+   titular (que lleva el acento en lima), así que lleva una base oscura
+   elíptica. Va como hermana de la <section> y no dentro, porque .page-hero
+   recorta con overflow:hidden y el borde del recorte se veía como una línea
+   recta; así el degradado se apaga solo, ya fuera de la columna de texto. */
+.page-hero-wash {
+  position: absolute; z-index: 0; pointer-events: none;
+  left: 0; right: 0; top: 0; height: min(920px, 108vh);
+  background: radial-gradient(46% 54% at 24% 50%, rgba(3,7,17,.88), rgba(3,7,17,.5) 50%, transparent 76%);
+}
+
+/* Legibilidad de los textos pequeños sobre las zonas con color */
+.page-kicker span { color: #909cb4; }
+.stage-label { color: #808b9e; }
+.showcase-heading > p:first-child { color: #858fa3; }
+.pcase-head span { color: #838c9e; }
+
+/* --------------------------------------------------------------------------
+   Móvil: menos capas, sin blend ni backdrop-filter, superficies más opacas
+   -------------------------------------------------------------------------- */
+@media (max-width: 1000px) {
+  .mobile-menu nav {
+    background: rgba(7,13,30,.92);
+    -webkit-backdrop-filter: blur(20px) saturate(130%);
+    backdrop-filter: blur(20px) saturate(130%);
+  }
+}
+
+@media (max-width: 700px) {
+  /* El color extra en móvil se pinta en capas estáticas (base y page-wash),
+     que no animan ni componen, así se mantienen las simplificaciones. */
+  .aurora-base {
+    background:
+      radial-gradient(84% 44% at -10% 20%, rgba(150,255,96,.34), transparent 68%),
+      radial-gradient(86% 46% at 110% 56%, rgba(44,238,216,.36), transparent 68%),
+      radial-gradient(72% 34% at 108% 2%, rgba(142,102,255,.24), transparent 70%),
+      radial-gradient(130% 56% at 50% 110%, rgba(34,190,196,.2), transparent 62%),
+      radial-gradient(135% 95% at 50% -12%, #0d1c3a 0%, rgba(9,17,38,.6) 42%, transparent 68%),
+      linear-gradient(180deg, #08142f 0%, #071331 48%, #050e24 100%);
+  }
+  .aurora-blob { mix-blend-mode: normal; }
+  .ab-cyan, .ab-violet-b { display: none; }
+  .ab-core { animation: none; }
+  .ab-green { left: -46vw; width: 96vw; background: radial-gradient(closest-side, rgba(166,255,100,.86), rgba(116,236,146,.42) 44%, rgba(52,170,140,.12) 70%, transparent 100%); }
+  .ab-teal { right: -48vw; width: 98vw; background: radial-gradient(closest-side, rgba(45,240,220,.86), rgba(46,188,224,.4) 46%, transparent 78%); }
+  .aurora-grain { opacity: .045; }
+  .aurora-veil {
+    background:
+      radial-gradient(74% 44% at 50% 36%, rgba(3,7,16,.6), rgba(3,7,16,.26) 58%, transparent 84%),
+      linear-gradient(180deg, rgba(3,7,16,.62) 0%, rgba(3,7,16,.14) 15%, transparent 28%);
+  }
+  .page-wash {
+    background:
+      radial-gradient(66% 13% at 0% 10%, rgba(163,255,96,.26), transparent 72%),
+      radial-gradient(64% 12% at 100% 24%, rgba(45,238,218,.28), transparent 72%),
+      radial-gradient(60% 11% at 0% 42%, rgba(145,112,255,.2), transparent 72%),
+      radial-gradient(66% 13% at 100% 57%, rgba(163,255,96,.22), transparent 72%),
+      radial-gradient(60% 11% at 0% 73%, rgba(45,238,218,.26), transparent 72%),
+      radial-gradient(64% 12% at 100% 89%, rgba(145,112,255,.2), transparent 72%);
+  }
+  :root { --panel: rgba(12,20,40,.82); --panel-2: rgba(18,28,54,.8); --extras-bleed: 14px; }
+  .route-card.dark,
+  .principles-grid article,
+  .price-card,
+  .pcase,
+  .contact-band,
+  .future-console {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+  .future-console { background: radial-gradient(circle at 50% 45%, rgba(115,232,255,.12), transparent 48%), rgba(10,17,38,.86); }
+  .showcase { background: linear-gradient(152deg, rgba(8,14,32,.5), rgba(5,10,24,.22) 46%, rgba(9,16,36,.48)); }
+  .pscene-sticky { background: radial-gradient(100% 78% at 52% 46%, rgba(4,8,18,.9), rgba(5,10,22,.68) 55%, rgba(7,13,28,.3) 90%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aurora-blob { animation: none !important; }
+}
