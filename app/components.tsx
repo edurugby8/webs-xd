@@ -84,6 +84,30 @@ export function ContactBand() {
   );
 }
 
+export function AuroraBackground() {
+  return (
+    <div className="aurora" aria-hidden="true">
+      <div className="aurora-base" />
+      <span className="aurora-blob ab-green" />
+      <span className="aurora-blob ab-teal" />
+      <span className="aurora-blob ab-cyan" />
+      <span className="aurora-blob ab-violet" />
+      <span className="aurora-blob ab-violet-b" />
+      <span className="aurora-blob ab-core" />
+      <div className="aurora-veil" />
+      <div className="aurora-grain" />
+    </div>
+  );
+}
+
 export function PageShell({ children }: { children: ReactNode }) {
-  return <main><SiteHeader />{children}<SiteFooter /></main>;
+  return (
+    <main>
+      <AuroraBackground />
+      <div className="page-wash" aria-hidden="true" />
+      <SiteHeader />
+      {children}
+      <SiteFooter />
+    </main>
+  );
 }
