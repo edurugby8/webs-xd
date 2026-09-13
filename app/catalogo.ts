@@ -41,7 +41,7 @@ export const PAQUETES: Paquete[] = [
     precioEtiqueta: "495 €",
     importe: 495,
     descripcion: "Una web completa para mostrar tus productos, sin cobro online.",
-    incluye: ["Todo lo de la web básica", "Fichas de producto", "Categorías", "Gestión inicial"],
+    incluye: ["Todo lo de la web básica", "Fichas de producto", "Categorías", "Carga inicial de productos y formación"],
     enlace: { texto: "Preparar mi catálogo", href: "/preparar-proyecto?objetivo=catalogo" },
   },
   {
@@ -51,7 +51,7 @@ export const PAQUETES: Paquete[] = [
     precioEtiqueta: "890 €",
     importe: 890,
     descripcion: "Una web completa para vender online, con carrito y pagos.",
-    incluye: ["Todo lo de la web básica", "Fichas de producto", "Categorías", "Carrito o pedidos", "Proceso de compra", "Gestión inicial"],
+    incluye: ["Todo lo de la web básica", "Fichas de producto", "Categorías", "Carrito y pagos online", "Proceso de compra", "Carga inicial de productos y formación"],
     enlace: { texto: "Preparar mi tienda online", href: "/preparar-proyecto?objetivo=vender" },
   },
   {
@@ -61,7 +61,7 @@ export const PAQUETES: Paquete[] = [
     precioEtiqueta: "395 €",
     importe: 395,
     descripcion: "Una base web acompañada por la preparación visual del perfil.",
-    incluye: ["Web esencial", "Ajuste del perfil", "Imagen coherente", "Contenido inicial", "Conexión entre canales"],
+    incluye: ["Web esencial", "Ajuste del perfil", "Imagen coherente", "Plantillas y 3 publicaciones", "Conexión entre canales"],
     enlace: { texto: "Preparar mi web + Instagram", href: "/preparar-proyecto?objetivo=instagram" },
   },
 ];
