@@ -464,6 +464,7 @@ em { font-family: Georgia, serif; font-weight: 400; }
   --teal: #2fe0c8;
   --violet: #8b6cff;
   --spring: #9dff5c;
+  --extras-bleed: 24px;
 }
 
 body { background: var(--bg); }
@@ -610,6 +611,24 @@ main { position: relative; z-index: 0; }
 .site-header { border-bottom-color: rgba(170,198,255,.18); }
 .desktop-nav { color: #ccd4e4; }
 
+/* Precios: los importes en lima llevan su propia base oscura. Se difumina
+   por los cuatro lados (a la izquierda dentro de la tabla, arriba y abajo con
+   una máscara, y a la derecha dentro del margen de la página) para que no se
+   note ningún borde y el color del fondo alrededor se mantenga. */
+.extras-table { position: relative; isolation: isolate; }
+.extras-table > div { position: relative; z-index: 1; }
+.extras-table::before {
+  content: ""; position: absolute; z-index: 0; pointer-events: none;
+  top: -20px; bottom: -20px; left: 34%; right: calc(-1 * var(--extras-bleed));
+  background:
+    linear-gradient(90deg, transparent, rgba(3,7,17,.5) 42%, rgba(3,7,17,.76) 78%, rgba(3,7,17,.76))
+      no-repeat left center / calc(100% - var(--extras-bleed)) 100%,
+    linear-gradient(90deg, rgba(3,7,17,.76), transparent)
+      no-repeat right center / var(--extras-bleed) 100%;
+  -webkit-mask-image: linear-gradient(180deg, transparent, #000 5%, #000 95%, transparent);
+          mask-image: linear-gradient(180deg, transparent, #000 5%, #000 95%, transparent);
+}
+
 /* Legibilidad de los textos pequeños sobre las zonas con color */
 .page-kicker span { color: #909cb4; }
 .stage-label { color: #808b9e; }
@@ -628,18 +647,38 @@ main { position: relative; z-index: 0; }
 }
 
 @media (max-width: 700px) {
+  /* El color extra en móvil se pinta en capas estáticas (base y page-wash),
+     que no animan ni componen, así se mantienen las simplificaciones. */
+  .aurora-base {
+    background:
+      radial-gradient(84% 44% at -10% 20%, rgba(150,255,96,.34), transparent 68%),
+      radial-gradient(86% 46% at 110% 56%, rgba(44,238,216,.36), transparent 68%),
+      radial-gradient(72% 34% at 108% 2%, rgba(142,102,255,.24), transparent 70%),
+      radial-gradient(130% 56% at 50% 110%, rgba(34,190,196,.2), transparent 62%),
+      radial-gradient(135% 95% at 50% -12%, #0d1c3a 0%, rgba(9,17,38,.6) 42%, transparent 68%),
+      linear-gradient(180deg, #08142f 0%, #071331 48%, #050e24 100%);
+  }
   .aurora-blob { mix-blend-mode: normal; }
   .ab-cyan, .ab-violet-b { display: none; }
   .ab-core { animation: none; }
-  .ab-green { left: -46vw; width: 96vw; }
-  .ab-teal { right: -48vw; width: 98vw; }
+  .ab-green { left: -46vw; width: 96vw; background: radial-gradient(closest-side, rgba(166,255,100,.86), rgba(116,236,146,.42) 44%, rgba(52,170,140,.12) 70%, transparent 100%); }
+  .ab-teal { right: -48vw; width: 98vw; background: radial-gradient(closest-side, rgba(45,240,220,.86), rgba(46,188,224,.4) 46%, transparent 78%); }
   .aurora-grain { opacity: .045; }
   .aurora-veil {
     background:
       radial-gradient(74% 44% at 50% 36%, rgba(3,7,16,.6), rgba(3,7,16,.26) 58%, transparent 84%),
       linear-gradient(180deg, rgba(3,7,16,.62) 0%, rgba(3,7,16,.14) 15%, transparent 28%);
   }
-  :root { --panel: rgba(12,20,40,.82); --panel-2: rgba(18,28,54,.8); }
+  .page-wash {
+    background:
+      radial-gradient(66% 13% at 0% 10%, rgba(163,255,96,.26), transparent 72%),
+      radial-gradient(64% 12% at 100% 24%, rgba(45,238,218,.28), transparent 72%),
+      radial-gradient(60% 11% at 0% 42%, rgba(145,112,255,.2), transparent 72%),
+      radial-gradient(66% 13% at 100% 57%, rgba(163,255,96,.22), transparent 72%),
+      radial-gradient(60% 11% at 0% 73%, rgba(45,238,218,.26), transparent 72%),
+      radial-gradient(64% 12% at 100% 89%, rgba(145,112,255,.2), transparent 72%);
+  }
+  :root { --panel: rgba(12,20,40,.82); --panel-2: rgba(18,28,54,.8); --extras-bleed: 14px; }
   .route-card.dark,
   .principles-grid article,
   .price-card,
